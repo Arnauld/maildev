@@ -10,13 +10,13 @@ const async = require('async')
 const nodemailer = require('nodemailer')
 
 // Create a transport with MailDev's default receiving port
-var transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   port: 1025,
   ignoreTLS: true
 })
 
 // Messages list
-var messages = [
+const messages = [
   {
     from: 'Angelo Pappas <angelo.pappas@fbi.gov>',
     to: 'Johnny Utah <johnny.utah@fbi.gov>',
