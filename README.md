@@ -177,8 +177,8 @@ Any help on MailDev would be awesome. There is plenty of room for improvement. F
 
 To run **MailDev** during development:
 
-    npm install
-    npm run dev
+    yarn install
+    yarn run dev
 
 The "dev" task will run MailDev using nodemon and restart automatically when
 changes are detected. On `*.scss` file save, the css will also be recompiled.
@@ -186,11 +186,11 @@ Using `test/send.js`, a few test emails will be sent every time the application
 restarts.
 
 The project uses the [JavaScript Standard coding style](https://standardjs.com).
-To lint your code before submitting your PR, run `npm run lint`.
+To lint your code before submitting your PR, run `yarn run lint`.
 
 To run the test suite:
 
-    $ npm test
+    $ yarn test
 
 ## [Changelog](https://github.com/maildev/maildev/releases)
 
