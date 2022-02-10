@@ -3,10 +3,10 @@
 const expect = require('expect')
 const auth = require('../lib/auth')
 
-describe('auththentication middleware', () => {
+describe('authentication middleware', () => {
   it('should return a function', () => {
     const middleware = auth('user', 'password')
-    expect(middleware).toBeA(Function)
+    expect(middleware).toBeInstanceOf(Function)
   })
 
   it('should return Unauthorized without authorization headers', () => {
@@ -22,7 +22,6 @@ describe('auththentication middleware', () => {
 
     middleware(fakeRequest, fakeResponse)
 
-    expect()
     expect(fakeResponse.setHeader).toHaveBeenCalledWith(
       'WWW-Authenticate',
       'Basic realm="Authentication required"'

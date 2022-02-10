@@ -24,6 +24,7 @@ describe('middleware', function () {
   let maildev
 
   before(function (done) {
+    console.log('before::: #1')
     const app = express()
 
     app.get('/', function (req, res) {
@@ -45,12 +46,16 @@ describe('middleware', function () {
     // Maildev available at the specified route '/maildev'
     app.use(proxy)
 
-    server = app.listen(8080, function (_) {
+    console.log('before:::Server listen ...')
+    server = app.listen(8080, function (err) {
+      console.log('before:::Server listening ...', err)
       maildev.listen(done)
     })
   })
 
   after(function (done) {
+    
+    console.log('after:::Server listening ...')
     maildev.close(function () {
       maildev.removeAllListeners()
       server.close(done)

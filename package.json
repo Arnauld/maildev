@@ -25,7 +25,7 @@
     "url": "http://github.com/maildev/maildev.git"
   },
   "scripts": {
-    "test": "standard && nyc _mocha --exit",
+    "test": "nyc mocha --exit",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "dev": "node ./scripts/dev.js & npm run css-watch",
