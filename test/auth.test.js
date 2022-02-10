@@ -1,6 +1,7 @@
 /* global describe, it */
 'use strict'
 const expect = require('expect')
+const jest = require('jest-mock')
 const auth = require('../lib/auth')
 
 describe('authentication middleware', () => {
@@ -16,8 +17,8 @@ describe('authentication middleware', () => {
     }
     const fakeResponse = {
       statusCode: null,
-      setHeader: expect.createSpy(),
-      send: expect.createSpy()
+      setHeader: jest.fn(),
+      send: jest.fn()
     }
 
     middleware(fakeRequest, fakeResponse)
@@ -38,8 +39,8 @@ describe('authentication middleware', () => {
     }
     const fakeResponse = {
       statusCode: null,
-      setHeader: expect.createSpy(),
-      send: expect.createSpy()
+      setHeader: jest.fn(),
+      send: jest.fn()
     }
 
     middleware(fakeRequest, fakeResponse)

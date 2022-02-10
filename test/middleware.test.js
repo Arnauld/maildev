@@ -9,7 +9,7 @@ const assert = require('assert')
 const path = require('path')
 const nodemailer = require('nodemailer')
 const express = require('express')
-const proxyMiddleware = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const got = require('got')
 
 const MailDev = require('../index.js')
@@ -24,7 +24,6 @@ describe('middleware', function () {
   let maildev
 
   before(function (done) {
-    console.log('before::: #1')
     const app = express()
 
     app.get('/', function (req, res) {
@@ -37,25 +36,21 @@ describe('middleware', function () {
     })
 
     // proxy all maildev requests to the maildev app
-    const proxy = proxyMiddleware('/maildev', {
+    const proxy = createProxyMiddleware({
       target: 'http://localhost:1080',
       ws: true,
       logLevel: 'silent'
     })
 
     // Maildev available at the specified route '/maildev'
-    app.use(proxy)
+    app.use('/maildev', proxy)
 
-    console.log('before:::Server listen ...')
     server = app.listen(8080, function (err) {
-      console.log('before:::Server listening ...', err)
       maildev.listen(done)
     })
   })
 
   after(function (done) {
-    
-    console.log('after:::Server listening ...')
     maildev.close(function () {
       maildev.removeAllListeners()
       server.close(done)
