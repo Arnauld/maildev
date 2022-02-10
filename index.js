@@ -104,8 +104,11 @@ module.exports = function (config) {
     })
   }
 
-  process.on('SIGTERM', shutdown)
-  process.on('SIGINT', shutdown)
+  // prevent "Possible EventEmitter memory leak detected."
+  if(config.registerProcessSignals) {
+    process.on('SIGTERM', shutdown)
+    process.on('SIGINT', shutdown)
+  }
 
   return mailserver
 }
