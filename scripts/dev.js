@@ -12,7 +12,7 @@ nodemon({
     '--verbose'
   ]
 }).on('start', function () {
-  setTimeout(sendEmails, 1000)
+  setTimeout(sendEmails, 5000)
 }).on('crash', function () {
   console.log('Nodemon process crashed')
 })

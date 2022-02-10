@@ -168,14 +168,21 @@ const messages = [
 
 ]
 
-function sendEmails (logErrors) {
-  messages.forEach(function (message) {
-    transporter.sendMail(message, function (err, info) {
-      if (logErrors && err) { return console.log('Test email error: ', err) }
-      console.log('Test email sent: ' + info.response)
-    })
+const sendEmails = function (logErrors) {
+  messages.forEach(async function (message) {
+    try {
+      const info = await transporter.sendMail(message)
+      console.log('Test email sent: ', info)
+    }
+    catch(e) {
+      console.error("Failed to send mail", e)
+    }
   })
 }
 
 // Run once if called directly, otherwise export
-if (require.main === module) { sendEmails(true) } else { module.exports = sendEmails }
+if (require.main === module) {
+  sendEmails(true)
+} else { 
+  module.exports = sendEmails
+}
