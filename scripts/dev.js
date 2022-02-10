@@ -1,5 +1,5 @@
 const nodemon = require('nodemon')
-const sendEmails = require('./send.js')
+const {sendEmailsOnceReady} = require('./send.js')
 
 nodemon({
   script: './bin/maildev',
@@ -12,7 +12,7 @@ nodemon({
     '--verbose'
   ]
 }).on('start', function () {
-  setTimeout(sendEmails, 5000)
+  sendEmailsOnceReady(5000)
 }).on('crash', function () {
   console.log('Nodemon process crashed')
 })

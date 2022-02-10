@@ -180,9 +180,24 @@ const sendEmails = function (logErrors) {
   })
 }
 
+const recurSendEmailsOnceReady = function(expiration) {
+  transporter.verify(function (error, success) {
+    if (error) {
+      console.log("Server is not ready yet, retrying...")
+      setTimeout(() => recurSendEmailsOnceReady(expiration), 500)
+    } else {
+      sendEmails()
+    }
+  })
+}
+
+const sendEmailsOnceReady = function(timeoutInMillis) {
+  recurSendEmailsOnceReady(Date.now() + timeoutInMillis)
+}
+
 // Run once if called directly, otherwise export
 if (require.main === module) {
   sendEmails(true)
 } else { 
-  module.exports = sendEmails
+  module.exports = {sendEmails, sendEmailsOnceReady}
 }
