@@ -26,6 +26,7 @@
   },
   "scripts": {
     "test": "nyc mocha --exit",
+    "test-raw": "mocha --exit",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "dev": "node ./scripts/dev.js & npm run css-watch",
