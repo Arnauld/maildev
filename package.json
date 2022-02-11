@@ -46,7 +46,7 @@
     "commander": "^9.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mailparser-mit": "^1.0.0",
+    "mailparser": "^3.4.0",
     "open": "^8.4.0",
     "rimraf": "^3.0.2",
     "smtp-connection": "4.0.2",
